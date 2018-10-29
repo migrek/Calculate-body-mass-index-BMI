@@ -7,7 +7,7 @@ function init(){
     calcButton.addEventListener('click', function(event) {
         event.preventDefault();});
     calcButton.addEventListener('click', function() {
-        document.querySelector('#text-export').innerHTML = calculateIMT(weightEl.value, heightEl.value);
+        document.querySelector('#text-export').value = calculateIMT(weightEl.value, heightEl.value);
     });
 }
 
@@ -37,7 +37,7 @@ function calculateIMT (w, h) {
         indexWeightText = 'Ожирение 3-й степени';
         recomendation = 'Прекращайте кушать!!!!';
     };
-    return [indexWeightText, recomendation];
-};
+    return (indexWeightText + '\n' + recomendation);
+}
 
 

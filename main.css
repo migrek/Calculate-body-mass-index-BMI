@@ -104,7 +104,8 @@ body {
 .text-export {
     width: 200px;
     height: 200px;
-    overflow: scroll;
+    overflow: auto;
+    resize: none;
 }
 
 .submit-b {
