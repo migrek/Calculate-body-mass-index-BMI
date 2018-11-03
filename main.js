@@ -33,11 +33,13 @@ function calculateIMT (w, h) {
     } else if (indexWeight < 40) {
         indexWeightText = 'Ожирение 2-й степени';
         recomendation = 'Вам нужно почти не кушать!!!!';
-    } else {
+    } else if (indexWeight >= 40) {
         indexWeightText = 'Ожирение 3-й степени';
-        recomendation = 'Прекращайте кушать!!!!';
+        recomendation = 'Прекращайте кушать!!!!';} 
+
+    if (!isNaN(indexWeight) && isFinite(indexWeight)) {
+        return (indexWeightText + '\n' + recomendation);
+    } else {
+        return ('Введите корректные параметры роста и веса!')
     };
-    return (indexWeightText + '\n' + recomendation);
 }
-
-
