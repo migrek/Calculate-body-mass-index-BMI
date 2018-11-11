@@ -4,9 +4,9 @@ function init(){
     var weightEl = document.querySelector('#weight');
     var heightEl = document.querySelector('#height');
     var calcButton = document.querySelector('#calcData');
+    getCurrentDate();
     calcButton.addEventListener('click', function(event) {
-        event.preventDefault();});
-    calcButton.addEventListener('click', function() {
+        event.preventDefault();
         document.querySelector('#text-export').value = calculateIMT(weightEl.value, heightEl.value);
     });
 }
@@ -15,7 +15,9 @@ function calculateIMT (w, h) {
     var indexWeightText;
     var recomendation;
     indexWeight = parseFloat(w / Math.pow(h/100, 2));
-    if (indexWeight < 16) {
+    if (isNaN(indexWeight) || !isFinite(indexWeight) || indexWeight == 0) {
+        return ('Введите корректные параметры роста и веса!');		
+    } else {if (indexWeight < 16) {
         indexWeightText = 'Дефицит веса.';
         recomendation = 'Вам нужно больше кушать!!!!';
     } else if (indexWeight < 18.5) {
@@ -35,11 +37,14 @@ function calculateIMT (w, h) {
         recomendation = 'Вам нужно почти не кушать!!!!';
     } else if (indexWeight >= 40) {
         indexWeightText = 'Ожирение 3-й степени';
-        recomendation = 'Прекращайте кушать!!!!';} 
+        recomendation = 'Прекращайте кушать!!!!';}}; 
+    return (getCurrentDate() + '\n' + 'Сведения о весе: ' + indexWeightText + '\n' + 'Рекомендация: ' + recomendation);
+};
 
-    if (!isNaN(indexWeight) && isFinite(indexWeight)) {
-        return (indexWeightText + '\n' + recomendation);
-    } else {
-        return ('Введите корректные параметры роста и веса!')
-    };
-}
+function getCurrentDate() {
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1;
+    var year = currentDate.getFullYear();
+    return('Сегодня: ' + day + '/' + month + '/' + year + '.');
+};
